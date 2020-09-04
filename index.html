@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteo VanillaJS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="sorteo">
+
+            <label>Sistema de sorteo</label>
+
+            <input type="text" id="name" placeholder="Participante">
+
+            <button class="add-btn" id="btnSubmit">Agregar participante</button>
+
+            <ul id="listaParticipantes"></ul>
+
+            <button class="sort-btn" id="sortear">Sortear</button>
+
+            <div id="counter">
+                <h1 id="ganador"></h1>
+            </div>
+
+        </div>
+        <span style="position: fixed; bottom: 0; left: 0; margin: 0 0 10px 10px; font-weight: bold; font-size: 18px;">By: Facundo Lavagnino - <a style="text-decoration: none; color: rgb(142, 37, 228);" href="https://github.com/Facundolavtech" target="_blank">=> GitHub</a></span>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
