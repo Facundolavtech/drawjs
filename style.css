@@ -1,0 +1,110 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body{
+    background: rgb(255, 255, 255);
+    margin: 0;
+    padding: 0;
+}
+
+ul{
+    width: 50%;
+}
+
+li{
+    color: rgb(56, 56, 56);
+    font-size: 28px;
+    list-style: none;
+    font-weight: bold;
+    text-align: center;
+    transform: translateX(-20px);
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.sorteo{
+    width: 50%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+label{
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: rgb(66, 66, 66);
+    margin-bottom: 10px;
+}
+
+input{
+    margin: 10px 0;
+    width: 40%;
+    border: 2px solid rgba(64, 64, 65, 0.493);
+    height: 30px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 4px;
+    color: rgb(68, 67, 67);
+    font-size: 20px;
+    padding: 20px;
+}
+
+.add-btn{
+    width: 30%;
+    height: 40px;
+    margin-top: 30px;
+    border: none;
+    background-color: rgb(49, 139, 49);
+    color: #fff;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 300ms;
+}
+
+.add-btn:hover{
+    background-color: rgb(38, 110, 36);
+}
+
+.sort-btn{
+    width: 30%;
+    height: 40px;
+    border: none;
+    background-color: rgb(177, 69, 69);
+    color: #fff;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 300ms;
+    margin-top: 50px;
+}
+
+.sort-btn:hover{
+    background-color: rgb(146, 51, 51);
+}
+
+
+.counter{
+    margin-top: 20px;
+    width: 60px;
+    height: 60px;
+    border: 5px solid rgb(209, 114, 114);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1{
+    color: rgb(56, 56, 56);
+}
