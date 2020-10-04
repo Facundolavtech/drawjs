@@ -10,25 +10,24 @@
 
 <body>
     <div class="container">
-        <div class="sorteo">
+        <div class="card">
 
             <label>Sistema de sorteo</label>
-
-            <input type="text" id="name" placeholder="Participante">
-
+            <input type="text" id="name" placeholder="Nombre del Participante">
             <button class="add-btn" id="btnSubmit">Agregar participante</button>
-
             <ul id="listaParticipantes"></ul>
-
+            <span id="cantidadParticipantes"></span>
             <button class="sort-btn" id="sortear">Sortear</button>
 
-            <div id="counter">
-                <h1 id="ganador"></h1>
+            <div class="counter__container">
+                <div id="counter">
+                    <h1 id="ganador"></h1>
+                </div>
             </div>
-
+            
         </div>
-        <span style="position: fixed; bottom: 0; left: 0; margin: 0 0 10px 10px; font-weight: bold; font-size: 18px;">By: Facundo Lavagnino - <a style="text-decoration: none; color: rgb(142, 37, 228);" href="https://github.com/Facundolavtech" target="_blank">=> GitHub</a></span>
     </div>
+    <span style="position: fixed; bottom: 0; left: 0; margin: 0 0 10px 10px; font-weight: bold; font-size: 18px;">By: Facundo Lavagnino - <a style="text-decoration: none; color: rgb(142, 37, 228);" href="https://github.com/Facundolavtech" target="_blank">=> GitHub</a></span>
 
 
     <script src="script.js"></script>
