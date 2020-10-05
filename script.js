@@ -9,103 +9,121 @@ const submit = document.getElementById('btnSubmit'),
     errorMsg = document.querySelector('.errorMsg')
 
 
-let lista = []
-
 let index = 1
 
 let nParticipantes = 0
 
-
-function mostrarError() {
-    errorMsg.classList.remove('errorHidden')
-    const ocultarError = setTimeout(() => {
-        errorMsg.classList.add('errorHidden')
-    }, 2000);
-}
+let arrParticipantes = []
 
 
+//Funcion que Agrega participante
 const agregarParticipante = (name) => {
-    if(nombreParticipante.value.length > 13){
-        mostrarError()
+    if(name.length > 13){
+        mostrarError(errorMsg, 'El nombre debe tener menos de 13 caracteres')
         nombreParticipante.value = ''
         return
-    } 
+    }        
 
-    if(nombreParticipante.value.length > 2){
-        lista.push(nombreParticipante.value)
+    if(name.length > 2){
+
+
+        if(arrParticipantes.includes(name)){
+            mostrarError(errorMsg, 'El participante ya existe')
+            return
+        } else{
+            arrParticipantes.push(name)
+        }
+        
+
 
         const participante = document.createElement('li')
-        participante.innerHTML = `${index} - ${nombreParticipante.value}`
+        participante.classList.add('participante')
+        participante.innerHTML = `${index} - ${name}`
 
         const eliminarBtn = document.createElement('button')
-        eliminarBtn.setAttribute('id', `${index-1}`)
+        eliminarBtn.setAttribute('id', `${index}`)
         eliminarBtn.setAttribute('class', 'eliminarBtn')
         eliminarBtn.innerHTML = `Eliminar`
     
         participante.insertAdjacentElement('beforeend', eliminarBtn)
-
-        eliminarBtn.addEventListener('click', (e) => {
-            console.log(e.target.id)
-            let nuevaLista = lista.filter(part => part !== lista[e.target.id])
-            lista = nuevaLista
-            participante.remove()
-            nParticipantes--
-            if(nParticipantes === 0) numeroParticipantes.textContent = ``
-            else numeroParticipantes.textContent = `Participantes: ${nParticipantes}`
-            console.log(nuevaLista)
-            console.log(e.target)
-        })
         
-
         listaParticipantes.appendChild(participante)
+
         nombreParticipante.value = ''
         index++
         nParticipantes++
         numeroParticipantes.textContent = `Participantes: ${nParticipantes}`
+
+
+        //Elimina participante//
+        eliminarBtn.addEventListener('click', (e) => {
+            eliminarParticipante(e.target)
+        })
     } 
     else {
-        mostrarError()
+        mostrarError(errorMsg, 'El nombre debe tener mas de 2 caracteres')
         nombreParticipante.value = ''
-        return
+        return;
     }
 }
 
+//Funcion que elimina participante
+const eliminarParticipante = (target) => {
 
+    let eliminarRepetido = (target.parentElement.textContent.toString().replace('Eliminar', '').replace(`${target.id}`, '').replace('-', '').replace('  ', ''))
+
+    function eliminar(array, elemento) {
+        let resultado = []
+        for (let i = 0; i < array.length; i++) {
+          if (array[i] !== elemento) {
+            resultado.push(array[i]);
+          }
+        }
+        return resultado;
+      }
+      
+      arrParticipantes = eliminar(arrParticipantes, eliminarRepetido);
+
+    target.parentElement.remove()
+    index--
+    nParticipantes--
+    numeroParticipantes.textContent = `Participantes: ${nParticipantes}`
+}
+
+
+//Boton agregar participante
 submit.addEventListener('click', () => {
-    agregarParticipante(nombreParticipante)
+    agregarParticipante(nombreParticipante.value)
 })
 
 document.addEventListener('keyup', (e)=>{
-    if(e.key === 'Enter') agregarParticipante(nombreParticipante)
+    if(e.key === 'Enter') {
+        agregarParticipante(nombreParticipante.value)
+    }
 })
 
 
-const reloj = () => {
-    let contador = 3
-    cuentaRegresiva.textContent = `${contador}`
-    let interval = setInterval(() => {
-        contador--
-        cuentaRegresiva.textContent = `${contador}`
-        if(contador <= 0) {
-            clearInterval(interval)
-            cuentaRegresiva.textContent = ''
-        } 
-    }, 1000);
-}
+
+
 
 sortear.addEventListener('click', () => {
-    if(lista.length > 1){
-    counter.classList.add('counter')
-    reloj()
+
+    if(listaParticipantes.childNodes.length > 1){
+
+    //Iniciar cuenta regresiva
+    countdown()
     const botonesEliminar = document.querySelectorAll('.eliminarBtn')
     botonesEliminar.forEach(e => e.disabled=true)
     ganadorTitle.textContent = ''
     sortear.disabled=true
     sortear.style.cursor=('initial')
     sortear.style.backgroundColor=('rgb(158, 157, 157)')
+
+    //Resultado del sorteo
     setTimeout(() => {
-        const ganador = Math.floor(Math.random() * lista.length)
-        ganadorTitle.textContent = `EL GANADOR ES: (${ganador + 1}) - ${lista[ganador]}`
+        let ganador = Math.floor(Math.random() * listaParticipantes.childNodes.length)
+        if(ganador === -1) ganador++
+        ganadorTitle.textContent = `EL GANADOR ES: ${listaParticipantes.childNodes[ganador].textContent.replace('Eliminar', '')}`
         counter.classList.remove('counter')
         sortear.disabled=false
         sortear.style.cursor=('pointer')
@@ -117,3 +135,27 @@ sortear.addEventListener('click', () => {
 })
 
 
+//Funcion que muestra errores
+const mostrarError = (component, mensaje) => {
+    component.textContent = (mensaje)
+    component.classList.remove('errorHidden')
+    const ocultarError = setTimeout(() => {
+        component.classList.add('errorHidden')
+    }, 2000);
+}
+
+
+//Funcion para cuenta regresiva
+const countdown = () => {
+    counter.classList.add('counter')
+    let contador = 3
+    cuentaRegresiva.textContent = `${contador}`
+    let interval = setInterval(() => {
+        contador--
+        cuentaRegresiva.textContent = `${contador}`
+        if(contador <= 0) {
+            clearInterval(interval)
+            cuentaRegresiva.textContent = ''
+        } 
+    }, 1000);
+}
