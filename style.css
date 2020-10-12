@@ -52,10 +52,11 @@ li{
     border-radius: 20px;
     overflow-y: hidden;
     margin-top: 70px;
+    margin-bottom: 70px;
 }
 
 label{
-    font-size: 2.5em;
+    font-size: 2em;
     text-align: center;
     font-weight: bold;
     text-transform: uppercase;
@@ -83,7 +84,6 @@ input{
     background-color: rgb(49, 139, 49);
     color: #fff;
     font-size: 20px;
-    font-weight: bold;
     cursor: pointer;
     transition: all 300ms;
 }
@@ -99,7 +99,6 @@ input{
     background-color: rgb(177, 69, 69);
     color: #fff;
     font-size: 20px;
-    font-weight: bold;
     cursor: pointer;
     transition: all 300ms;
     margin: 40px auto 0 auto;
